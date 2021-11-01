@@ -1,6 +1,5 @@
 #include<iostream>
 #include<cstring>
-const int arsize = 9;
 const char player1 = 'o';
 const char player2 = 'x';
 void fill(char[][3]);
