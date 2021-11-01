@@ -5,8 +5,13 @@ To play you must input cell to step. For example: "1:1". You can also write like
 This game will be upgraded and updated, thats all in future!
 
 My goals:
+
 -custom player symbol.
+
 -user log in.
+
 -leader table.
+
 -random first player step.
+
 -good formated output (field rewrite).
