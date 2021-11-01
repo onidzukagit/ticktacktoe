@@ -61,9 +61,9 @@ void draw(char field[][3]) {
 void step(char field[][3], char player) {
 	using namespace std;
 	cout << "Step of player " << player;
-	int* outp = new int;
+	int outp;
 	char cell[4];
-	while(*outp != 1) {
+	while(outp != 1) {
 	cout << "\nEnter a cell:";
 	cin.getline(cell, 4);
 	if((((int)cell[0]-49) < 0 && ((int)cell[0]-49) > 9) && (((int)cell[2]-49) < 0 && ((int)cell[2]-49) > 9)) {
@@ -72,16 +72,15 @@ void step(char field[][3], char player) {
 	}
 	else if(field[(int)cell[0] - 49][(int)cell[2] - 49] != '#') {
 		cout << "This cell is busy, choose another\n"; 
-		*outp = 0;
+		outp = 0;
 	}
 	else {
 		field[(int)cell[0] - 49][(int)cell[2] - 49] = player;
-		*outp = 1;
+		outp = 1;
 	}
 
 	}
 	draw(field);
-	delete outp;
 }
 
 char check(char field[][3], char player) {
