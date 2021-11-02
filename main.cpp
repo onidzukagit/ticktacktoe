@@ -1,4 +1,10 @@
 #include<iostream>
+<<<<<<< HEAD
+=======
+#include<cstring>
+const char player1 = 'o';
+const char player2 = 'x';
+>>>>>>> d8fb91255b68d3f51148c2cdbbc1af222f8ccc73
 void fill(char[][3]);
 void draw(char[][3]);
 void step(char[][3], char);
@@ -69,10 +75,32 @@ void draw(char field[][3]) {
 }
 
 void step(char field[][3], char player) {
+<<<<<<< HEAD
 	using namespace std;	
 	cout << "Step of player " << player << ':';
 	int outp;
 	char cell[4];
+=======
+	using namespace std;
+	cout << "Step of player " << player;
+	int outp;
+	char cell[4];
+	while(outp != 1) {
+	cout << "\nEnter a cell:";
+	cin.getline(cell, 4);
+	if((((int)cell[0]-49) < 0 && ((int)cell[0]-49) > 9) && (((int)cell[2]-49) < 0 && ((int)cell[2]-49) > 9)) {
+		cout << "Oops, something went wrong! Repeat please!";
+		*outp = 0;
+	}
+	else if(field[(int)cell[0] - 49][(int)cell[2] - 49] != '#') {
+		cout << "This cell is busy, choose another\n"; 
+		outp = 0;
+	}
+	else {
+		field[(int)cell[0] - 49][(int)cell[2] - 49] = player;
+		outp = 1;
+	}
+>>>>>>> d8fb91255b68d3f51148c2cdbbc1af222f8ccc73
 
 	while(outp != 1) {
 		cout << "\nEnter a cell:";
