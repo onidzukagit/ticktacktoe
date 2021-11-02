@@ -1,13 +1,24 @@
 #include<iostream>
-const char player1 = 'o';
-const char player2 = 'x';
 void fill(char[][3]);
 void draw(char[][3]);
 void step(char[][3], char);
+void player_create(char*, char); //In future!
 char check(char[][3], char);
+
+//Also in future versions!
+struct player {
+	char name[40];
+	char symbol;
+};
 
 int main(void) {
 	using namespace std;
+	
+	char player1, player2;
+	cout << "Enter player 1  symbol: ";
+	cin >> player1;
+	cout << "Enter player 2 symbol: ";
+	cin >> ws >>  player2;
 	char field[3][3];
 	fill(field);
 	int count = 1;
@@ -58,22 +69,23 @@ void draw(char field[][3]) {
 }
 
 void step(char field[][3], char player) {
-	using std::cout; using std::cin;
-	cout << "Step of player " << player;
+	using namespace std;	
+	cout << "Step of player " << player << ':';
 	int outp;
 	char cell[4];
-	
-	//Number of cell
-	int ycell = ((int)cell[o]) - 49;
-	int xcell = ((int)cell[2] - 49);
-
 
 	while(outp != 1) {
 		cout << "\nEnter a cell:";
-		cin.getline(cell, 4);
+		cin >> ws >> cell;
+		cin.clear();
+
+		//Variables which represent stroke and collumn cell.
+		int ycell = ((int)cell[0]) - 49;
+		int xcell = ((int)cell[2]) - 49;
+		
 		//If coordinate over field
-		if((ycell < 0 && ycell > 2) && (xcell < 0 && xcell > 2)) {
-			cout << "Oops, something went wrong! Repeat please!";
+		if((ycell < 0 || ycell > 9) || (xcell < 0 || xcell > 9)) {
+			cout << "\nOops, something went wrong! Repeat please!";
 			outp = 0;
 		}
 		//If cell already busy by other player
@@ -120,3 +132,5 @@ char check(char field[][3], char player) {
 	}
 	return '0';
 }
+
+		
