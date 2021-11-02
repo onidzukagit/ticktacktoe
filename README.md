@@ -6,7 +6,7 @@ This game will be upgraded and updated, thats all in future!
 
 My goals:
 
--custom player symbol.
+~~-custom player symbol.~~
 
 -user log in.
 
