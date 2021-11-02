@@ -1,6 +1,4 @@
 #include<iostream>
-#include<cstring>
-const int arsize = 9;
 const char player1 = 'o';
 const char player2 = 'x';
 void fill(char[][3]);
@@ -31,12 +29,10 @@ int main(void) {
 		}
 		++count;
 	}
-	
-
 	return 0;
-
 }
 
+//Fill cell of fields
 void fill(char field[][3]) {
 	for(int i = 0; i < 3; i++) {
 		for(int j = 0; j < 3; j++) {
@@ -45,55 +41,64 @@ void fill(char field[][3]) {
 	}
 }
 
+//Draw field 
 void draw(char field[][3]) {
-	using namespace std;
+	using std::cout; using std::endl;
+	//Collumn number
 	cout << "   " << '1' << "  " << '2' << "  " << '3';
 	for(int i = 0; i < 3; i++) {
-			cout << std::endl;
+			cout << endl;
+			//Stroke number
 			cout << (i+1) << ' ';
 		for(int j = 0; j < 3; j++) {
 			cout << '|' << field[i][j] << '|';
 		}
 	}
-	cout << std::endl;
+	cout << endl;
 }
 
 void step(char field[][3], char player) {
-	using namespace std;
+	using std::cout; using std::cin;
 	cout << "Step of player " << player;
-	int* outp = new int;
+	int outp;
 	char cell[4];
-	while(*outp != 1) {
-	cout << "\nEnter a cell:";
-	cin.getline(cell, 4);
-	if((((int)cell[0]-49) < 0 && ((int)cell[0]-49) > 9) && (((int)cell[2]-49) < 0 && ((int)cell[2]-49) > 9)) {
-		cout << "Oops, something went wrong! Repeat please!";
-		*outp = 0;
-	}
-	else if(field[(int)cell[0] - 49][(int)cell[2] - 49] != '#') {
-		cout << "This cell is busy, choose another\n"; 
-		*outp = 0;
-	}
-	else {
-		field[(int)cell[0] - 49][(int)cell[2] - 49] = player;
-		*outp = 1;
-	}
+	
+	//Number of cell
+	int ycell = ((int)cell[o]) - 49;
+	int xcell = ((int)cell[2] - 49);
 
+
+	while(outp != 1) {
+		cout << "\nEnter a cell:";
+		cin.getline(cell, 4);
+		//If coordinate over field
+		if((ycell < 0 && ycell > 2) && (xcell < 0 && xcell > 2)) {
+			cout << "Oops, something went wrong! Repeat please!";
+			outp = 0;
+		}
+		//If cell already busy by other player
+		else if(field[ycell][xcell] != '#') {
+			cout << "This cell is busy, choose another\n"; 
+			outp = 0;
+		}
+		else {
+			field[ycell][xcell] = player;
+			outp = 1;
+		}
 	}
 	draw(field);
-	delete outp;
 }
 
 char check(char field[][3], char player) {
-	using namespace std;
+	//Horizontal line check
 	for(int i = 0; i < 3; i++) {
 		for(int j = 0; j < 3; j++) {
 			if(field[i][j] != player) break;
 			else if(j == 2) return player;
 			else if(field[i][j] == player) continue;
 		}
-	
 	}
+	//Vertical line check
 	for(int i = 0; i < 3; i++) {
 		for(int j = 0; j < 3; j++) {
 			if(field[j][i] != player) break;
@@ -101,17 +106,17 @@ char check(char field[][3], char player) {
 			else if(field[j][i] == player) continue;
 		}
 	}
+	//Angle rise check
 	for(int i =0; i < 3; i++) {
 		if(field[i][i] != player) break;
 		else if(i == 2) return player;
 	}
+	//Angle fall check
 	int j = 2;
 	for(int i = 0; i < 3; i++) {
 		if(field[i][j] != player) break;
 		else if(i == 2) return player;
 		--j;	
 	}
-	
 	return '0';
-
 }
