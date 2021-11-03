@@ -2,14 +2,15 @@
 void fill(char[][3]);
 void draw(char[][3]);
 void step(char[][3], char);
-void player_create(char*, char); //In future!
+//void player_create(char*, char); In future!
 char check(char[][3], char);
 
-//Also in future versions!
+/* Also in future versions!
 struct player {
 	char name[40];
 	char symbol;
 };
+*/
 
 int main(void) {
 	using namespace std;
