@@ -1,8 +1,14 @@
 #include<iostream>
+#include<cstdlib>
+#include <unistd.h>
+unsigned int sleep(unsigned int seconds);
+
 void fill(char[][3]);
 void draw(char[][3]);
 void step(char[][3], char);
+
 //void player_create(char*, char); In future!
+
 char check(char[][3], char);
 
 /* Also in future versions!
@@ -14,7 +20,8 @@ struct player {
 
 int main(void) {
 	using namespace std;
-	
+	system("clear");
+
 	char player1, player2;
 	cout << "Enter player 1  symbol: ";
 	cin >> player1;
@@ -56,6 +63,7 @@ void fill(char field[][3]) {
 //Draw field 
 void draw(char field[][3]) {
 	using std::cout; using std::endl;
+	std::system("clear");
 	//Collumn number
 	cout << "   " << '1' << "  " << '2' << "  " << '3';
 	for(int i = 0; i < 3; i++) {
@@ -83,23 +91,29 @@ void step(char field[][3], char player) {
 		//Variables which represent stroke and collumn cell.
 		int ycell = ((int)cell[0]) - 49;
 		int xcell = ((int)cell[2]) - 49;
-		
+			
 		//If coordinate over field
 		if((ycell < 0 || ycell > 9) || (xcell < 0 || xcell > 9)) {
 			cout << "\nOops, something went wrong! Repeat please!";
 			outp = 0;
+			
+			sleep(5);
+			system("clear");
 		}
 		//If cell already busy by other player
 		else if(field[ycell][xcell] != '#') {
 			cout << "This cell is busy, choose another\n"; 
 			outp = 0;
+			
+			sleep(5);
+			system("clear");
 		}
 		else {
 			field[ycell][xcell] = player;
 			outp = 1;
 		}
+		draw(field);
 	}
-	draw(field);
 }
 
 char check(char field[][3], char player) {
